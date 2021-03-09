@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+
+wine = pd.read_csv('C:\data\csv\winequality-white.csv',sep=';')
+count_data = wine.groupby('quality')['quality'].count()                       #groupby?????????????????????????????????
+print(count_data)
+
+import matplotlib.pyplot as plt
+count_data.plot()
+plt.show()
