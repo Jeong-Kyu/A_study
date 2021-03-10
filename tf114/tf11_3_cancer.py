@@ -23,7 +23,7 @@ hypothesis = tf.sigmoid(tf.matmul(x, w) + b)
 # cost = tf.reduce_mean(tf.square(hypothesis-y))
 cost = -tf.reduce_mean(y*tf.log(hypothesis)+(1-y)*tf.log(1-hypothesis))
 
-train = tf.train.AdamOptimizer(learning_rate=0.0000023).minimize(cost)
+train = tf.train.GradientDescentOptimizer(learning_rate=0.00000031).minimize(cost)
 
 predicted = tf.cast(hypothesis>0.5, dtype=tf.float32)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y), dtype = tf.float32))
@@ -46,3 +46,8 @@ with tf.Session() as sess:
     print("acc: ",accuracy_score(y_data,y_predict_value))
 
 sess.close()
+
+# adam (learning_rate=0.0000023)
+# acc:  0.9050966608084359
+# GradientDescentOptimizer(learning_rate=0.00000031)
+# acc:  0.906854130052724
