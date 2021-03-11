@@ -25,7 +25,7 @@ hypothesis = tf.matmul(x,w)+b
 
 cost = tf.reduce_mean(tf.square(hypothesis-y))
 
-optimizer = tf.train.AdamOptimizer(learning_rate=0.99)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.99)
 train = optimizer.minimize(cost)
 
 from sklearn.metrics import r2_score
@@ -42,5 +42,4 @@ with tf.Session() as sess:
 sess.close()
 
 # r2:  0.5144020896348773 AdamOptimizer(learning_rate=0.99999999)
-
 # r2:  0.6277470615143084 GradientDescentOptimizer(learning_rate=0.99)

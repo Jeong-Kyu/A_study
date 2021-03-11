@@ -21,7 +21,7 @@ b = tf.Variable(tf.zeros([1]), name='bias')
 hypothesis = tf.sigmoid(tf.matmul(x, w) + b)
 
 # cost = tf.reduce_mean(tf.square(hypothesis-y))
-cost = -tf.reduce_mean(y*tf.log(hypothesis)+(1-y)*tf.log(1-hypothesis))
+cost = -tf.reduce_mean(y*tf.log(hypothesis)+(1-y)*tf.log(1-hypothesis)) #binary_crossentropy
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.00000031).minimize(cost)
 
