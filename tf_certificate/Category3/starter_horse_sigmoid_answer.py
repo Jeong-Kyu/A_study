@@ -25,20 +25,24 @@ import tensorflow as tf
 import urllib
 import zipfile
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import tensorflow as tf
+import urllib
+import zipfile
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 def solution_model():
-    # _TRAIN_URL = "https://storage.googleapis.com/download.tensorflow.org/data/horse-or-human.zip"
-    # _TEST_URL = "https://storage.googleapis.com/download.tensorflow.org/data/validation-horse-or-human.zip"
-    # urllib.request.urlretrieve(_TRAIN_URL, 'horse-or-human.zip')
-    # local_zip = 'horse-or-human.zip'
-    # zip_ref = zipfile.ZipFile(local_zip, 'r')
-    # zip_ref.extractall('tmp/horse-or-human/')
-    # zip_ref.close()
-    # urllib.request.urlretrieve(_TEST_URL, 'testdata.zip')
-    # local_zip = 'testdata.zip'
-    # zip_ref = zipfile.ZipFile(local_zip, 'r')
-    # zip_ref.extractall('tmp/testdata/')
-    # zip_ref.close()
+    _TRAIN_URL = "https://storage.googleapis.com/download.tensorflow.org/data/horse-or-human.zip"
+    _TEST_URL = "https://storage.googleapis.com/download.tensorflow.org/data/validation-horse-or-human.zip"
+    urllib.request.urlretrieve(_TRAIN_URL, 'horse-or-human.zip')
+    local_zip = 'horse-or-human.zip'
+    zip_ref = zipfile.ZipFile(local_zip, 'r')
+    zip_ref.extractall('tmp/horse-or-human/')
+    zip_ref.close()
+    urllib.request.urlretrieve(_TEST_URL, 'testdata.zip')
+    local_zip = 'testdata.zip'
+    zip_ref = zipfile.ZipFile(local_zip, 'r')
+    zip_ref.extractall('tmp/testdata/')
+    zip_ref.close()
 
     train_datagen = ImageDataGenerator(
         #Your code here. Should at least have a rescale. Other parameters can help with overfitting.)
