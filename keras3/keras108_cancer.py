@@ -1,23 +1,27 @@
 import numpy as np
 import tensorflow as tf
 import autokeras as ak
-from tensorflow.keras.datasets import mnist
+from sklearn.datasets import load_breast_cancer
 
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-x_train = x_train.reshape(60000,28,28,1).astype('float32')/255.
-x_test = x_test.reshape(10000,28,28,1).astype('float32')/255.
+# 1. 데이터
+datesets = load_breast_cancer()
+x = datesets.data
+y = datesets.target
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.8, shuffle = True, random_state = 66 )
 
-from tensorflow.keras.utils import to_categorical
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+x_train = x_train.reshape(455,30).astype('float32')/255.
+x_test = x_test.reshape(114,30).astype('float32')/255.
 
-model = ak.ImageClassifier(
+# from tensorflow.keras.utils import to_categorical
+# y_train = to_categorical(y_train)
+# y_test = to_categorical(y_test)
+
+model = ak.StructuredDataClassifier(
     overwrite=True,
     max_trials=2,
-    loss = 'mse',
-    metrics = ['acc'],
-
-)
+    loss = 'binary_crossentropy',
+    metrics = ['accuracy'])
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.callbacks import ReduceLROnPlateau
