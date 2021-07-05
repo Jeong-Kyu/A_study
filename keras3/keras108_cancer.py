@@ -19,7 +19,7 @@ x_test = x_test.reshape(114,30).astype('float32')/255.
 
 model = ak.StructuredDataClassifier(
     overwrite=True,
-    max_trials=2,
+    max_trials=3,
     loss = 'binary_crossentropy',
     metrics = ['accuracy'])
 
@@ -29,7 +29,7 @@ from tensorflow.keras.callbacks import ReduceLROnPlateau
 es = EarlyStopping(monitor='val_loss', mode='min', patience=6)
 lr = ReduceLROnPlateau(monitor='val_loss', patience=3, factor = 0.5, verbose=2)
 ck = ModelCheckpoint('C:/data/modelcheckpoint', save_weights_only=True, save_best_onlT=True, monitor='val_loss', verbose=1) 
-model.fit(x_train, y_train, epochs=3, validation_split=0.2,
+model.fit(x_train, y_train, epochs=100, validation_split=0.2,
         callbacks = [es,lr,ck])
 
 results = model.evaluate(x_test, y_test)
